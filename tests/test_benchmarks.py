@@ -117,40 +117,38 @@ class TestCyberGymBenchmark:
         """Test normalizing CyberGym task."""
         benchmark = CyberGymBenchmark()
         task = {
-            "project": "libxml2",
-            "bug_id": "CVE-2021-1234",
-            "description": "Buffer overflow vulnerability",
-            "pre_patch_repo": "https://github.com/owner/repo.git",
-            "pre_patch_commit": "abc123",
-            "post_patch_repo": "https://github.com/owner/repo.git",
-            "post_patch_commit": "def456",
-            "vulnerability_type": "buffer_overflow",
+            "task_id": "arvo:1234",
+            "project_name": "libxml2",
+            "project_main_repo": "https://github.com/owner/repo.git",
+            "project_language": "c++",
+            "vulnerability_description": "Buffer overflow vulnerability",
+            "task_difficulty": {"level0": [], "level1": [], "level2": [], "level3": []},
             "_cybergym_level": 1,
         }
 
         normalized = benchmark.normalize_task(task)
-        assert normalized.task_id == "libxml2_CVE-2021-1234"
+        assert normalized.task_id == "arvo:1234"
         assert (
             "vulnerability" in normalized.problem_statement.lower()
             or "exploit" in normalized.problem_statement.lower()
         )
         assert "owner/repo" in normalized.repo
-        assert normalized.commit == "abc123"
+        assert normalized.commit == "HEAD"
 
     def test_generate_problem_statement_level_0(self) -> None:
         """Test problem statement generation at level 0."""
         benchmark = CyberGymBenchmark(level=0)
         task = {
-            "project": "test-project",
-            "bug_id": "123",
-            "description": "Test description",
-            "vulnerability_type": "buffer_overflow",
+            "task_id": "arvo:123",
+            "project_name": "test-project",
+            "project_language": "c++",
+            "vulnerability_description": "Test description",
             "_cybergym_level": 0,
         }
 
         statement = benchmark._generate_problem_statement(task)
         assert "test-project" in statement
-        assert "123" in statement
+        assert "arvo:123" in statement
         # Level 0 should be minimal
         assert len(statement) < 200
 
@@ -158,17 +156,17 @@ class TestCyberGymBenchmark:
         """Test problem statement generation at level 3."""
         benchmark = CyberGymBenchmark(level=3)
         task = {
-            "project": "test-project",
-            "bug_id": "123",
-            "description": "Test description",
-            "vulnerability_type": "buffer_overflow",
+            "task_id": "arvo:123",
+            "project_name": "test-project",
+            "project_language": "c++",
+            "vulnerability_description": "Test description",
             "_cybergym_level": 3,
         }
 
         statement = benchmark._generate_problem_statement(task)
         assert "test-project" in statement
-        assert "123" in statement
-        assert "buffer_overflow" in statement
+        assert "arvo:123" in statement
+        assert "c++" in statement
         assert "Test description" in statement
         # Level 3 should be detailed
         assert len(statement) > 200
