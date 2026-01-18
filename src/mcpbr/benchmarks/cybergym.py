@@ -1,6 +1,5 @@
 """CyberGym benchmark implementation."""
 
-import shlex
 from typing import Any
 
 from datasets import load_dataset
@@ -190,7 +189,9 @@ class CyberGymBenchmark:
             repo = task.get("project_name", "unknown")
 
         temp_task = {
-            "instance_id": task["instance_id"],  # Use sanitized instance_id (colon replaced with underscore)
+            "instance_id": task[
+                "instance_id"
+            ],  # Use sanitized instance_id (colon replaced with underscore)
             "repo": repo,
             "base_commit": "HEAD",
         }
