@@ -11,6 +11,7 @@
 [![CI](https://github.com/greynewell/mcpbr/actions/workflows/ci.yml/badge.svg)](https://github.com/greynewell/mcpbr/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Documentation](https://img.shields.io/badge/docs-greynewell.github.io%2Fmcpbr-blue)](https://greynewell.github.io/mcpbr/)
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/greynewell/mcpbr?utm_source=oss&utm_medium=github&utm_campaign=greynewell%2Fmcpbr&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
 
 > Stop guessing if your MCP server actually helps. Get hard numbers comparing tool-assisted vs. baseline agent performance on real GitHub issues.
 
